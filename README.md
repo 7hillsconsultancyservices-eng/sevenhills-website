@@ -46,7 +46,7 @@ Any static host works. The build command is `npm run build` and the publish fold
 
 The site is deployed with GitHub Pages. The `public/CNAME` file sets the custom domain to `shcdata.ca`, and the GitHub Actions workflow in `.github/workflows/deploy.yml` rebuilds and republishes the site on every push to `main`.
 
-DNS at Porkbun for the root domain `shcdata.ca` (add these, and do not delete the Zoho email MX / TXT records):
+DNS at Namecheap (the registrar for shcdata.ca), under Advanced DNS for the root domain (add these, and do not delete the email MX / TXT records):
 
 - A records pointing to GitHub Pages: `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`
 - Optional: a `www` CNAME record pointing to `<github-username>.github.io`
