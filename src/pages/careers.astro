@@ -1,0 +1,117 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CtaBand from '../components/CtaBand.astro';
+import Arrow from '../components/Arrow.astro';
+import { company, pageMeta, services } from '../data/site';
+
+const meta = pageMeta.careers;
+---
+
+<BaseLayout title={meta.title} description={meta.description}>
+  <section class="page-hero">
+    <div class="container page-hero__grid">
+      <div>
+        <h1>Build the platform with us.</h1>
+        <p class="page-hero__lede">
+          SevenHills is building its product development team across the eight departments behind
+          the platform. The work spans clinical data, safety, statistics, software, and validation.
+        </p>
+      </div>
+      <aside class="page-hero__aside">
+        <strong>Hiring notes</strong>
+        <ul>
+          <li>Roles are based in Ontario, Canada</li>
+          <li>Remote work where stated in a posting</li>
+          <li>Introductions are received by email</li>
+          <li>No open roles are listed at this time</li>
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container about-intro">
+      <h2>We are building our team</h2>
+      <div class="about-copy">
+        <p>
+          We are an early-stage clinical technology company, so the work is hands-on and the scope
+          is broad. The platform is in development, and the team is being built across the same
+          areas as the product.
+        </p>
+        <p>
+          The eight departments below are the areas where we expect to hire as the product and
+          services grow. Some roles will be product roles, some will be service delivery roles, and
+          some will sit across both.
+        </p>
+        <p>
+          Roles are based in Ontario, Canada. Remote work is noted in individual postings when it
+          is available.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--tight">
+    <div class="container">
+      <div class="section-head">
+        <h2>Areas of hiring</h2>
+        <p>
+          These are the departments behind the platform. There are no open roles listed at this
+          time, but you are welcome to introduce yourself for future consideration.
+        </p>
+      </div>
+
+      <div class="careers-list">
+        {
+          services.map((service) => (
+            <article class="career-row">
+              <span class="career-row__num">{service.number}</span>
+              <h3>{service.name}</h3>
+              <p>{service.short}</p>
+              <span class="career-row__status">Future hiring area</span>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--grey">
+    <div class="container about-intro">
+      <h2>Introduce yourself</h2>
+      <div class="about-copy">
+        <p>
+          Send a short introduction to
+          <a href={`mailto:${company.email}?subject=Careers%3A%20SevenHills`}>{company.email}</a>
+          with the subject line "Careers: [area]" and the department that fits your experience.
+        </p>
+        <p>
+          Include what you have worked on and the kind of role you are looking for.
+        </p>
+        <p>
+          SevenHills does not operate a job application portal. Introductions are received by
+          email.
+        </p>
+        <div class="actions actions--tight">
+          <a
+            class="btn btn--primary"
+            href={`mailto:${company.email}?subject=Careers%3A%20SevenHills`}
+          >
+            Email SevenHills
+            <Arrow class="btn__arrow" />
+          </a>
+          <a class="btn btn--secondary" href="/about/">About SevenHills</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CtaBand
+    title="Not sure where you fit?"
+    text="Tell us what you do well and how it connects to clinical data. We will point you to the closest area."
+    primaryLabel="Email SevenHills"
+    primaryHref={`mailto:${company.email}?subject=Careers%3A%20SevenHills`}
+    secondaryLabel="Read about the platform"
+    secondaryHref="/platform/"
+  />
+</BaseLayout>

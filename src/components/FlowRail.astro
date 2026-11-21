@@ -1,0 +1,17 @@
+---
+import { stages } from '../data/site';
+
+const keyStages = new Set(['03', '08']);
+---
+
+<ol class="rail" aria-label="The eight stages, from CRF design to final report">
+  {
+    stages.map((stage) => (
+      <li class:list={['rail__item', { 'rail__item--key': keyStages.has(stage.number) }]}>
+        <span class="rail__node" aria-hidden="true">{stage.number}</span>
+        <span class="rail__name">{stage.name}</span>
+        <span class="rail__summary">{stage.summary}</span>
+      </li>
+    ))
+  }
+</ol>

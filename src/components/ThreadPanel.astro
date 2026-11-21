@@ -1,0 +1,38 @@
+---
+import { stages } from '../data/site';
+---
+
+<aside class="thread" aria-labelledby="thread-title">
+  <div class="thread__top">
+    <p id="thread-title">Trial thread</p>
+    <span class="thread__tag">Synthetic example</span>
+  </div>
+
+  <div class="thread__field">
+    <div>
+      <span class="thread__field-name">Hemoglobin</span>
+      <span class="thread__field-code">HGB / Visit 3 / Lab</span>
+    </div>
+    <span class="thread__value">128 <small>g/L</small></span>
+  </div>
+
+  <ol class="thread__list" aria-label="One field moving through the eight platform stages">
+    {
+      stages.map((stage) => (
+        <li class="thread__row">
+          <span class="thread__node" aria-hidden="true" />
+          <span class="thread__num">{stage.number}</span>
+          <span>
+            <span class="thread__stage">{stage.shortName}</span>
+            <span class="thread__note">{stage.threadNote}</span>
+          </span>
+        </li>
+      ))
+    }
+  </ol>
+
+  <div class="thread__foot">
+    <span>Traceable from CRF to report</span>
+    <span>Eight stages</span>
+  </div>
+</aside>

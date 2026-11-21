@@ -1,0 +1,90 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { pageMeta, services } from '../data/site';
+
+const meta = pageMeta.services;
+---
+
+<BaseLayout title={meta.title} description={meta.description}>
+  <section class="page-hero">
+    <div class="container page-hero__grid">
+      <div>
+        <h1>Clinical data services, end to end.</h1>
+        <p class="page-hero__lede">
+          SevenHills delivers specialist services across the same eight stages as the platform,
+          from CRF design and EDC build through biostatistics, SAS programming, and final
+          reporting.
+        </p>
+      </div>
+      <aside class="page-hero__aside">
+        <strong>How the services fit</strong>
+        <ul>
+          <li>Eight areas across one clinical data lifecycle</li>
+          <li>Scoped to the study or program</li>
+          <li>Delivered by the team building the platform</li>
+          <li>Based in Ontario, Canada</li>
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section section--tight">
+    <div class="container">
+      <div class="chips" aria-label="Service areas">
+        {
+          services.map((service) => (
+            <a class="chip" href={`#service-${service.number}`}>
+              <span>{service.number}</span>
+              {service.name}
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <div class="container">
+    {
+      services.map((service) => (
+        <article class="service" id={`service-${service.number}`}>
+          <div class="service__grid">
+            <div class="service__aside">
+              <span class="service__num">Service {service.number}</span>
+              <h2>{service.name}</h2>
+            </div>
+            <div class="service__body">
+              <p class="service__what">{service.what}</p>
+              <div class="service__block">
+                <h3>What we do</h3>
+                <ul class="bullets">
+                  {service.actions.map((action) => (
+                    <li>{action}</li>
+                  ))}
+                </ul>
+              </div>
+              <div class="service__block">
+                <h3>Key deliverables</h3>
+                <div class="deliverables">
+                  <ul>
+                    {service.deliverables.map((deliverable) => (
+                      <li>{deliverable}</li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+      ))
+    }
+  </div>
+
+  <CtaBand
+    title="Start with the stage that needs attention."
+    text="Tell us which part of the clinical data lifecycle is creating the most friction, and we will respond with a focused next step."
+    primaryLabel="Contact SevenHills"
+    secondaryLabel="Explore the platform"
+    secondaryHref="/platform/"
+  />
+</BaseLayout>

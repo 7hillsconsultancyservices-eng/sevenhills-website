@@ -1,0 +1,45 @@
+---
+import fs from 'node:fs';
+import path from 'node:path';
+
+interface Props {
+  class?: string;
+  tagline?: boolean;
+}
+
+const { class: className = '', tagline = true } = Astro.props;
+const suppliedLogo = fs.existsSync(
+  path.join(process.cwd(), 'public', 'SevenHills-Logo-v2-3Mountains.png')
+);
+---
+
+<a href="/" class:list={['brand', className]} aria-label="SevenHills home">
+  {
+    suppliedLogo ? (
+      <img
+        class="brand__image"
+        src="/SevenHills-Logo-v2-3Mountains.png"
+        alt="SevenHills"
+        height="42"
+        width="220"
+      />
+    ) : (
+      <>
+        <span class="brand__lockup" aria-hidden="true">
+          <span class="brand__seven">Seven</span>
+          <span class="brand__hills">
+            <svg class="brand__peaks" viewBox="0 0 33 13" fill="none" aria-hidden="true">
+              <path d="M0 12L5.8 2.6L11.6 12H0Z" fill="currentColor" />
+              <path d="M11.9 12L17.4 0.8L22.9 12H11.9Z" fill="currentColor" />
+              <path d="M23.2 12L28.1 4.4L33 12H23.2Z" fill="currentColor" />
+            </svg>
+            Hills
+          </span>
+        </span>
+        {tagline && (
+          <span class="brand__tagline">Clinical Data Management &amp; Pharma Technology</span>
+        )}
+      </>
+    )
+  }
+</a>

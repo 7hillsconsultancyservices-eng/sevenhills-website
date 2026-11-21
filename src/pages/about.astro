@@ -1,0 +1,183 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { pageMeta } from '../data/site';
+
+const meta = pageMeta.about;
+---
+
+<BaseLayout title={meta.title} description={meta.description}>
+  <section class="page-hero">
+    <div class="container page-hero__grid">
+      <div>
+        <h1>A clinical technology company, built around the data.</h1>
+        <p class="page-hero__lede">
+          SevenHills is an Ontario-incorporated clinical technology company based in Scarborough,
+          Toronto. We are building one connected platform for clinical data and delivering
+          specialist services across the same lifecycle.
+        </p>
+      </div>
+      <aside class="page-hero__aside">
+        <strong>At a glance</strong>
+        <ul>
+          <li>Product and services in clinical data management</li>
+          <li>Incorporated in Ontario on June 13, 2024</li>
+          <li>Based in Scarborough, Toronto</li>
+          <li>Platform in development</li>
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section section--tight">
+    <div class="container">
+      <dl class="facts">
+        <div class="fact">
+          <dt>Incorporated</dt>
+          <dd>Ontario, June 13, 2024</dd>
+        </div>
+        <div class="fact">
+          <dt>Based in</dt>
+          <dd>Scarborough, Toronto</dd>
+        </div>
+        <div class="fact">
+          <dt>Focus</dt>
+          <dd>Clinical data and pharma technology</dd>
+        </div>
+        <div class="fact">
+          <dt>Stage</dt>
+          <dd>Product in development</dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container about-intro">
+      <h2>Who we are</h2>
+      <div class="about-copy">
+        <p>
+          SevenHills is a product-based and service-based IT company focused on clinical data
+          management and pharma technology. The company was incorporated in Ontario on June 13,
+          2024, and works from Scarborough, Toronto.
+        </p>
+        <p>
+          Our work sits between clinical operations, data management, safety, statistics, and
+          software. That position is deliberate. The people configuring a study should understand
+          how the data will be cleaned, analyzed, and reported, and the software should reflect
+          that understanding.
+        </p>
+        <p>
+          We are early stage. The platform is in development, and the service areas on this site
+          describe the work we are organized to deliver. We do not present client work, adoption,
+          or certifications that do not yet exist.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--tint">
+    <div class="container about-intro">
+      <h2>What we are building, and why</h2>
+      <div class="about-copy">
+        <p>
+          The platform is one end-to-end flow: CRF design, TMF, EDC, clinical data management,
+          pharmacovigilance, biostatistics, SAS analysis, and final report generation.
+        </p>
+        <p>
+          The reason is simple. Clinical teams should not have to rebuild the story of a trial
+          every time data crosses a system boundary. A field should keep its definition, its
+          history, and its evidence as it moves from design to report.
+        </p>
+        <p>
+          <strong>
+            That is the product thesis: one traceable record, with eight connected stages, instead
+            of a chain of tools held together by manual handoffs.
+          </strong>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <h2>Our approach</h2>
+        <p>
+          The platform is being built for regulated work. That changes how we design, test, and
+          describe it.
+        </p>
+      </div>
+
+      <div class="principles">
+        <article class="principle">
+          <h3>Product plus services</h3>
+          <p>
+            The platform and the service team develop together. Service work keeps the product
+            close to real study operations, and the product is intended to make delivery more
+            consistent.
+          </p>
+        </article>
+        <article class="principle">
+          <h3>Quality and validation first</h3>
+          <p>
+            We design with validation in mind: controlled definitions, audit trails, traceability,
+            and change control. Validation is a process, not a badge, and we describe the platform
+            as in development.
+          </p>
+        </article>
+        <article class="principle">
+          <h3>One record over many integrations</h3>
+          <p>
+            Integrations are necessary, but they should not be the place where the meaning of the
+            data gets rebuilt. We prefer one traceable record with clear links to external sources.
+          </p>
+        </article>
+        <article class="principle">
+          <h3>Honest scope</h3>
+          <p>
+            We will not claim adoption, certifications, or outcomes we cannot show. The site says
+            what exists, what is being built, and what remains a plan.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--grey">
+    <div class="container">
+      <div class="vision">
+        <div>
+          <h2>The SHCData vision</h2>
+          <p>
+            SHCData is the parent brand, intentionally broader than clinical data. Over time, the
+            same approach to connected, traceable data can extend to other data-driven sectors.
+            The website and the product today stay focused on clinical and pharma technology.
+          </p>
+          <div class="sectors" aria-label="SHCData sectors today and over time">
+            <span class="sector sector--now">Clinical data today</span>
+            <span class="sector">Telecom, over time</span>
+            <span class="sector">Marketing, over time</span>
+            <span class="sector">Finance, over time</span>
+            <span class="sector">Claims, over time</span>
+          </div>
+        </div>
+        <div>
+          <h3>Why start with clinical data</h3>
+          <p class="vision__note">
+            Clinical trials are a demanding place to prove a data model. The work is documented,
+            regulated, and reviewed. If one traceable record can hold up from CRF design to a final
+            report, the same discipline can support other data-heavy industries later.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CtaBand
+    title="A conversation is a good place to start."
+    text="If you work in clinical data and want to compare notes on where handoffs break, contact SevenHills directly."
+    secondaryLabel="Read about the platform"
+    secondaryHref="/platform/"
+  />
+</BaseLayout>

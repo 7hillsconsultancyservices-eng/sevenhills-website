@@ -1,0 +1,25 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Page not found | SevenHills"
+  description="The page you requested is not available. Return to the SevenHills home page or explore the platform."
+  noindex
+>
+  <section class="notfound">
+    <div class="container">
+      <span class="notfound__code">404 / NOT FOUND</span>
+      <h1>This page is not in the thread.</h1>
+      <p>
+        The page may have moved, or the address may be incomplete. Use the links below to get back
+        to the platform, the services, or the contact page.
+      </p>
+      <div class="actions">
+        <a class="btn btn--primary" href="/">Back to home</a>
+        <a class="btn btn--secondary" href="/platform/">Explore the platform</a>
+        <a class="btn btn--secondary" href="/contact/">Contact SevenHills</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

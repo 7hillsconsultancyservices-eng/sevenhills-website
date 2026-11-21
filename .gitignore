@@ -1,0 +1,29 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+.astro/
+
+# Local environment
+.env
+.env.*
+!.env.example
+
+# Editor and OS
+.DS_Store
+.vscode/
+.idea/
+
+# Impeccable working files
+.impeccable/questions/
+.impeccable/mocks/
+.impeccable/review/
+.impeccable/critique/
+.impeccable/config.local.json
+
+# Agent and tool working folders (local only, not part of the website)
+.agent/
+.agents/
+.gemini/
+.opencode/

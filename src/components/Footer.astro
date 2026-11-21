@@ -1,0 +1,48 @@
+---
+import Logo from './Logo.astro';
+import { company, navItems } from '../data/site';
+
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div>
+        <Logo tagline={false} />
+        <p class="footer__tagline">{company.tagline}</p>
+        <p class="footer__domain">SHCData / {company.domain}</p>
+      </div>
+
+      <div>
+        <h2 class="footer__label">Quick links</h2>
+        <ul class="footer__links">
+          {
+            navItems.map((item) => (
+              <li>
+                <a href={item.href}>{item.label}</a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="footer__label">Contact</h2>
+        <div class="footer__contact">
+          <p>
+            <a href={`mailto:${company.email}`}>{company.email}</a>
+          </p>
+          <p>
+            {company.location}
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer__legal">
+      <p>&copy; {year} {company.legalName}. All rights reserved.</p>
+      <p>Scarborough, Toronto, Ontario, Canada</p>
+    </div>
+  </div>
+</footer>

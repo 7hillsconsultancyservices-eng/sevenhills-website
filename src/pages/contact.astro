@@ -1,0 +1,244 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { company, pageMeta } from '../data/site';
+
+const meta = pageMeta.contact;
+---
+
+<BaseLayout title={meta.title} description={meta.description}>
+  <section class="page-hero">
+    <div class="container page-hero__grid">
+      <div>
+        <h1>Talk to SevenHills.</h1>
+        <p class="page-hero__lede">
+          Send a note about your study, your clinical data workflow, or the platform. Messages go
+          directly to the SevenHills team by email.
+        </p>
+      </div>
+      <aside class="page-hero__aside">
+        <strong>Before you send</strong>
+        <ul>
+          <li>Email is the contact method for now</li>
+          <li>No data is stored on this website</li>
+          <li>For careers, use the subject line Careers: [area]</li>
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container contact-grid">
+      <div>
+        <form class="form" id="contact-form" data-email={company.email} novalidate>
+          <div class="form__row">
+            <div class="field" data-field="name">
+              <label for="name">Name</label>
+              <input
+                id="name"
+                name="name"
+                type="text"
+                autocomplete="name"
+                required
+                aria-required="true"
+                aria-describedby="name-error"
+              />
+              <p class="field__error" id="name-error" aria-live="polite"></p>
+            </div>
+            <div class="field" data-field="email">
+              <label for="email">Email</label>
+              <input
+                id="email"
+                name="email"
+                type="email"
+                autocomplete="email"
+                required
+                aria-required="true"
+                aria-describedby="email-error"
+              />
+              <p class="field__error" id="email-error" aria-live="polite"></p>
+            </div>
+          </div>
+
+          <div class="field" data-field="company">
+            <label for="company">Company <span class="optional">(optional)</span></label>
+            <input id="company" name="company" type="text" autocomplete="organization" />
+          </div>
+
+          <div class="field" data-field="subject">
+            <label for="subject">Subject</label>
+            <input
+              id="subject"
+              name="subject"
+              type="text"
+              required
+              aria-required="true"
+              aria-describedby="subject-error"
+            />
+            <p class="field__error" id="subject-error" aria-live="polite"></p>
+          </div>
+
+          <div class="field" data-field="message">
+            <label for="message">Message</label>
+            <textarea
+              id="message"
+              name="message"
+              required
+              aria-required="true"
+              aria-describedby="message-error"
+            ></textarea>
+            <p class="field__error" id="message-error" aria-live="polite"></p>
+          </div>
+
+          <div class="form__actions">
+            <button class="btn btn--primary" type="submit">Open email draft</button>
+            <span class="form__note">No account or application portal is needed.</span>
+          </div>
+
+          <p class="form__note">
+            This form validates in your browser and opens your email app with the message ready to
+            send. Nothing is sent to or stored on this website. If your email app does not open,
+            write to <a href={`mailto:${company.email}`}>{company.email}</a> directly.
+          </p>
+
+          <p class="form__status" id="form-status" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+
+      <aside class="contact-panel" aria-label="SevenHills contact details">
+        <div class="contact-panel__head">Contact details</div>
+        <div class="contact-panel__body">
+          <dl>
+            <div class="contact-block">
+              <dt>Email</dt>
+              <dd><a href={`mailto:${company.email}`}>{company.email}</a></dd>
+            </div>
+            <div class="contact-block">
+              <dt>Location</dt>
+              <dd>{company.location}</dd>
+            </div>
+            <div class="contact-block">
+              <dt>Careers</dt>
+              <dd>
+                <a href="/careers/">See the eight areas of hiring</a>
+              </dd>
+            </div>
+          </dl>
+
+          <p class="contact-legal">
+            {company.legalName}<br />
+            {company.location}
+          </p>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <script>
+    const form = document.querySelector<HTMLFormElement>('#contact-form');
+    const status = document.getElementById('form-status');
+
+    if (form && status) {
+      const contactEmail = form.dataset.email ?? '';
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      const fields = {
+        name: {
+          input: form.querySelector<HTMLInputElement>('#name'),
+          error: document.getElementById('name-error'),
+          validate: (value: string) => (value.length >= 2 ? '' : 'Enter your name.'),
+        },
+        email: {
+          input: form.querySelector<HTMLInputElement>('#email'),
+          error: document.getElementById('email-error'),
+          validate: (value: string) =>
+            emailPattern.test(value) ? '' : 'Enter a valid email address.',
+        },
+        subject: {
+          input: form.querySelector<HTMLInputElement>('#subject'),
+          error: document.getElementById('subject-error'),
+          validate: (value: string) => (value.length >= 3 ? '' : 'Add a short subject.'),
+        },
+        message: {
+          input: form.querySelector<HTMLTextAreaElement>('#message'),
+          error: document.getElementById('message-error'),
+          validate: (value: string) =>
+            value.length >= 10 ? '' : 'Write a message of at least 10 characters.',
+        },
+      };
+
+      const clearField = (key: keyof typeof fields) => {
+        const field = fields[key];
+        field.error!.textContent = '';
+        field.input!.removeAttribute('aria-invalid');
+        field.input!.closest('.field')?.classList.remove('field--error');
+      };
+
+      const validateField = (key: keyof typeof fields) => {
+        const field = fields[key];
+        const message = field.validate(field.input!.value.trim());
+        field.error!.textContent = message;
+
+        if (message) {
+          field.input!.setAttribute('aria-invalid', 'true');
+          field.input!.closest('.field')?.classList.add('field--error');
+        } else {
+          field.input!.removeAttribute('aria-invalid');
+          field.input!.closest('.field')?.classList.remove('field--error');
+        }
+
+        return !message;
+      };
+
+      Object.keys(fields).forEach((key) => {
+        const field = fields[key as keyof typeof fields];
+        field.input?.addEventListener('input', () => clearField(key as keyof typeof fields));
+      });
+
+      form.addEventListener('submit', (event) => {
+        event.preventDefault();
+        status.textContent = '';
+
+        const results = (Object.keys(fields) as Array<keyof typeof fields>).map((key) => ({
+          key,
+          valid: validateField(key),
+        }));
+
+        const firstInvalid = results.find((result) => !result.valid);
+        if (firstInvalid) {
+          fields[firstInvalid.key].input?.focus();
+          status.textContent = 'Please correct the highlighted fields.';
+          return;
+        }
+
+        const data = new FormData(form);
+        const name = String(data.get('name') ?? '').trim();
+        const email = String(data.get('email') ?? '').trim();
+        const companyName = String(data.get('company') ?? '').trim();
+        const subject = String(data.get('subject') ?? '').trim();
+        const message = String(data.get('message') ?? '').trim();
+
+        const body = [
+          `Name: ${name}`,
+          `Email: ${email}`,
+          ...(companyName ? [`Company: ${companyName}`] : []),
+          '',
+          message,
+          '',
+          'Sent from the SevenHills website',
+        ].join('\n');
+
+        const mailto = `mailto:${contactEmail}?subject=${encodeURIComponent(
+          `Website enquiry: ${subject}`
+        )}&body=${encodeURIComponent(body)}`;
+
+        status.textContent =
+          'Opening your email app with the message. If nothing happens, use the email address on this page.';
+
+        // Backend integration point:
+        // Replace this mailto handoff with a POST to a serverless function when a backend is available.
+        // Example: await fetch('/api/contact', { method: 'POST', body: JSON.stringify({ name, email, companyName, subject, message }) });
+        window.location.href = mailto;
+      });
+    }
+  </script>
+</BaseLayout>

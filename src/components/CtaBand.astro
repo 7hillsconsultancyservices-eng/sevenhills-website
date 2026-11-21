@@ -1,0 +1,47 @@
+---
+import Arrow from './Arrow.astro';
+import { company } from '../data/site';
+
+interface Props {
+  title?: string;
+  text?: string;
+  primaryLabel?: string;
+  primaryHref?: string;
+  secondaryLabel?: string;
+  secondaryHref?: string;
+}
+
+const {
+  title = 'Bring one data thread to your next study.',
+  text = 'Tell us where your clinical data workflow breaks, and we will show you how the SevenHills platform is being designed to close the gap.',
+  primaryLabel = 'Contact SevenHills',
+  primaryHref = '/contact/',
+  secondaryLabel = 'Explore the platform',
+  secondaryHref = '/platform/',
+} = Astro.props;
+---
+
+<section class="cta">
+  <div class="container">
+    <div class="cta__inner">
+      <div>
+        <h2>{title}</h2>
+        <p>{text}</p>
+        <div class="actions">
+          <a class="btn btn--primary" href={primaryHref}>
+            {primaryLabel}
+            <Arrow class="btn__arrow" />
+          </a>
+          <a class="btn btn--secondary" href={secondaryHref}>{secondaryLabel}</a>
+        </div>
+      </div>
+      <div class="cta__aside">
+        <span class="data-label">Direct contact</span>
+        <p>
+          <a href={`mailto:${company.email}`}>{company.email}</a>
+        </p>
+        <p class="small cta__location">{company.location}</p>
+      </div>
+    </div>
+  </div>
+</section>

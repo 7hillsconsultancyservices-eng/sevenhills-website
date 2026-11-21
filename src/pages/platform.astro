@@ -1,0 +1,192 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { pageMeta, stages } from '../data/site';
+
+const meta = pageMeta.platform;
+---
+
+<BaseLayout title={meta.title} description={meta.description}>
+  <section class="page-hero">
+    <div class="container page-hero__grid">
+      <div>
+        <h1>One platform, stage by stage.</h1>
+        <p class="page-hero__lede">
+          The SevenHills platform is being built as one connected record across eight stages of
+          clinical data work. Each stage reads from the same thread and leaves its history attached
+          for the next team.
+        </p>
+      </div>
+      <aside class="page-hero__aside">
+        <strong>Platform status</strong>
+        <ul>
+          <li>In development</li>
+          <li>Eight connected stages</li>
+          <li>Product plus services model</li>
+          <li>Designed for regulated clinical work</li>
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+  <nav class="stage-nav" aria-label="Platform stages">
+    <div class="container stage-nav__inner">
+      {
+        stages.map((stage) => (
+          <a class="chip" href={`#stage-${stage.number}`}>
+            <span>{stage.number}</span>
+            {stage.shortName}
+          </a>
+        ))
+      }
+    </div>
+  </nav>
+
+  <div class="container">
+    {
+      stages.map((stage) => (
+        <article class="stage" id={`stage-${stage.number}`}>
+          <div class="stage__grid">
+            <div class="stage__meta">
+              <span class="stage__num">{stage.number}</span>
+              <p>{stage.summary}</p>
+            </div>
+            <div class="stage__body">
+              <h2>{stage.name}</h2>
+              <p>{stage.description}</p>
+              <div class="stage__cols">
+                <ul class="bullets">
+                  {stage.bullets.map((bullet) => (
+                    <li>{bullet}</li>
+                  ))}
+                </ul>
+                <dl class="carry">
+                  <dt>Carries forward</dt>
+                  <dd>{stage.carries}</dd>
+                </dl>
+              </div>
+            </div>
+          </div>
+        </article>
+      ))
+    }
+  </div>
+
+  <section class="section section--tint">
+    <div class="container">
+      <div class="section-head">
+        <h2>One field, eight stages, no re-keying.</h2>
+        <p>
+          Interlinking means the same field keeps its identity as it moves. This synthetic example
+          follows one hemoglobin result from form design to a reported table.
+        </p>
+      </div>
+
+      <div class="lineage">
+        <table>
+          <caption>Synthetic example: HGB through the platform</caption>
+          <thead>
+            <tr>
+              <th scope="col">Record</th>
+              <th scope="col">CRF design</th>
+              <th scope="col">EDC</th>
+              <th scope="col">Data management</th>
+              <th scope="col">Analysis</th>
+              <th scope="col">Report</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="is-key">
+              <td>HGB</td>
+              <td>Defined as g/L, range 30 to 250, one decimal.</td>
+              <td>128 entered at Visit 3 with source context and audit trail.</td>
+              <td>No query. Value confirmed against the lab source.</td>
+              <td>Mapped to the analysis dataset with the unit retained.</td>
+              <td>Appears in the report table with a link back to source.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="flow__notes">
+        <div class="flow__note">
+          <strong>One identifier</strong>
+          <span>Subject, visit, form, and field stay attached to the value.</span>
+        </div>
+        <div class="flow__note">
+          <strong>One history</strong>
+          <span>Changes, queries, coding decisions, and approvals remain visible.</span>
+        </div>
+        <div class="flow__note">
+          <strong>One path back</strong>
+          <span>A reported result can be followed to the source that produced it.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <h2>Designed for validation, described honestly.</h2>
+        <p>
+          The platform is in development. These are design commitments we are building against,
+          not certifications we hold.
+        </p>
+      </div>
+
+      <div class="validation-grid">
+        <article class="validation-item">
+          <h3>Audit trails</h3>
+          <p>
+            Every change keeps the who, what, when, and why attached to the record, including
+            changes made through integrations.
+          </p>
+        </article>
+        <article class="validation-item">
+          <h3>Controlled definitions</h3>
+          <p>
+            Forms, fields, code lists, and edit checks are versioned and governed, so a change is
+            deliberate and traceable.
+          </p>
+        </article>
+        <article class="validation-item">
+          <h3>Traceability</h3>
+          <p>
+            Requirements, tests, data mappings, and report outputs are linked, which makes review
+            and inspection preparation more direct.
+          </p>
+        </article>
+        <article class="validation-item">
+          <h3>Change control</h3>
+          <p>
+            Changes are reviewed, tested, and documented before release. Validation is planned
+            according to intended use and risk.
+          </p>
+        </article>
+      </div>
+
+      <div class="status-note">
+        <span class="status-note__label">Where we are today</span>
+        <div>
+          <p>
+            SevenHills is early stage and the platform is in development. There are no production
+            deployments to announce, and no client case studies on this site.
+          </p>
+          <p>
+            The eight service areas are part of the business today. The platform is being built to
+            support the same work with one connected record instead of a chain of handoffs.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CtaBand
+    title="Follow the thread into your own workflow."
+    text="If you want to compare the platform flow with the way your study runs today, contact SevenHills directly."
+    primaryLabel="Contact SevenHills"
+    secondaryLabel="See the services"
+    secondaryHref="/services/"
+  />
+</BaseLayout>

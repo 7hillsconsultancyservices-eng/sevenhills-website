@@ -1,0 +1,22 @@
+{
+  "name": "sevenhills-website",
+  "type": "module",
+  "version": "1.0.0",
+  "private": true,
+  "description": "SevenHills public website. Clinical data management and pharma technology.",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@fontsource-variable/archivo": "^5.2.8",
+    "@fontsource-variable/inter": "^5.2.8",
+    "astro": "^5.15.0"
+  },
+  "devDependencies": {
+    "sharp": "^0.34.4"
+  }
+}
