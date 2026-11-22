@@ -75,7 +75,7 @@ Page layouts are in `src/pages/`, shared pieces (header, footer, logo) in `src/c
 
 ## Contact form
 
-The form has no backend by design. On submit it validates the fields and opens the visitor's email app with the message addressed to 7hillsconsultancyservices@gmail.com. To collect messages directly later, replace the mailto step in `src/pages/contact.astro` (marked with a comment) with a POST to a serverless form endpoint.
+The form has no backend by design. On submit it validates the fields and opens the visitor's email app with the message addressed to info@shcdata.ca. To collect messages directly later, replace the mailto step in `src/pages/contact.astro` (marked with a comment) with a POST to a serverless form endpoint.
 
 ## Notes
 

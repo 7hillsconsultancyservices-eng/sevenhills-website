@@ -293,7 +293,7 @@ export const company = {
   brand: 'SevenHills',
   legalName: 'SEVENHILLS CONSULTANCY SERVICES INCORPORATED',
   tagline: 'Clinical Data Management & Pharma Technology',
-  email: '7hillsconsultancyservices@gmail.com',
+  email: 'info@shcdata.ca',
   location: 'Scarborough, Toronto, Ontario, Canada',
   incorporated: 'June 13, 2024',
   domain: 'shcdata.ca',
